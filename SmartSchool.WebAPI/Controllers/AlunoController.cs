@@ -10,34 +10,75 @@ namespace SmartSchool.WebAPI.Controllers
     [Route("api/[controller]")]
     public class AlunoController : ControllerBase
     {
-        private readonly SmartContext _context;
+        private readonly IRepository _repository;
 
-        public AlunoController(SmartContext context)
+        public AlunoController(IRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Alunos);
+            var response = _repository.GetAlunos(true);
+            return Ok(response);
         }
-        [HttpGet("{Id}")]
+
+        [HttpGet("byId")]
         public IActionResult GetById(int Id)
         {
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == Id);
-            if(aluno == null) return BadRequest("O aluno não foi encontrado");
+            var response = _repository.GetAlunosById(false, Id);
+            if (response == null) return BadRequest("O aluno não foi encontrado");
 
 
-            return Ok(aluno);
+            return Ok(response);
         }
 
         [HttpPost]
         public IActionResult Post(Aluno aluno)
         {
-            _context.Add(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+            _repository.Add(aluno);
+            if(_repository.SaveChanges())
+            {
+                return Ok(aluno);
+            }
+
+            return BadRequest("Aluno não cadastrado");
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Aluno aluno)
+        {
+            var response = _repository.GetAlunosById(false, id);
+            if (response == null) return BadRequest("O aluno não foi encontrado");
+
+
+            _repository.Update(aluno);
+            if(_repository.SaveChanges())
+            {
+                return Ok(aluno);
+            }
+
+            return BadRequest("Aluno não atualizado");
+
+        }
+
+        [HttpDelete("{id}")]
+        
+        public IActionResult Delete(int id)
+        {
+            var response = _repository.GetAlunosById(false, id);
+            if (response == null) return BadRequest("O aluno não foi encontrado");
+
+            Aluno aluno = response;
+
+            _repository.Delete(aluno);
+            if(_repository.SaveChanges())
+            {
+                return Ok(aluno);
+            }
+
+            return BadRequest("Aluno não deletado");
         }
     }
 }
