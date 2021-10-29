@@ -18,6 +18,14 @@ namespace SmartSchool.WebAPI.Helpers
                         opt => opt.MapFrom(src => src.DataDeNascimento.GetCurrentAge())
                     );
             CreateMap<AlunoDto, Aluno>();
+
+            CreateMap<AlunoRegistroDto, Aluno>();
+
+            CreateMap<Professor, ProfessorDto>()
+                    .ForMember(
+                        dest => dest.Nome,
+                        opt => opt.MapFrom(src => $"{src.Nome} {src.SobreNome}")
+                    );
         } 
     }
 }
