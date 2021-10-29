@@ -63,3 +63,5 @@ C:\Users\lucas\OneDrive\Documentos\Projetos\SmartSchool\SmartSchool.WebAPI\bin\D
 C:\Users\lucas\OneDrive\Documentos\Projetos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\lucas\OneDrive\Documentos\Projetos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\lucas\OneDrive\Documentos\Projetos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\lucas\OneDrive\Documentos\Projetos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\lucas\OneDrive\Documentos\Projetos\SmartSchool\SmartSchool.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
