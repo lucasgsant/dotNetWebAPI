@@ -3,13 +3,14 @@ using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.DTOs;
+using SmartSchool.WebAPI.V1.DTOs;
 using SmartSchool.WebAPI.models;
 
 namespace SmartSchool.WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
         private readonly IRepository _repository;
