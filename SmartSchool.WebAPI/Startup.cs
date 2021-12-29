@@ -30,7 +30,10 @@ namespace SmartSchool
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SmartContext>(
-                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+                context => context.UseMySql(Configuration.GetConnectionString("MySqlConnection"),
+                mySqlOptionsAction: Options => {
+                    Options.EnableRetryOnFailure();
+                })
             );
 
             services.AddControllers()
@@ -69,7 +72,7 @@ namespace SmartSchool
 
 
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiProviverDescription)
         {
